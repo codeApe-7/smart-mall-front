@@ -1,34 +1,41 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import { STORAGE_KEYS } from '@shared/constants/storage';
+import AdminLayout from '@/layouts/AdminLayout.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    {
-      path: '/login',
-      name: 'admin-login',
-      component: () => import('@/views/LoginView.vue'),
-    },
+    { path: '/login', component: () => import('@/views/auth/LoginPage.vue') },
     {
       path: '/',
-      component: () => import('@/layouts/AdminWorkbenchLayout.vue'),
+      component: AdminLayout,
+      redirect: '/dashboard',
+      meta: { auth: true },
       children: [
-        { path: '', redirect: '/dashboard' },
-        { path: 'dashboard', name: 'admin-dashboard', component: () => import('@/views/DashboardView.vue') },
-        { path: 'category', name: 'admin-category', component: () => import('@/views/CategoryManageView.vue') },
-        { path: 'products', name: 'admin-products', component: () => import('@/views/ProductManageView.vue') },
-        { path: 'orders', name: 'admin-orders', component: () => import('@/views/OrderManageView.vue') },
-        { path: 'refunds', name: 'admin-refunds', component: () => import('@/views/RefundManageView.vue') },
-        { path: 'reviews', name: 'admin-reviews', component: () => import('@/views/ReviewManageView.vue') },
-        { path: 'users', name: 'admin-users', component: () => import('@/views/UserManageView.vue') },
-        { path: 'notices', name: 'admin-notices', component: () => import('@/views/NoticeManageView.vue') },
-        { path: 'ai-config', name: 'admin-ai-config', component: () => import('@/views/AiConfigView.vue') },
-        { path: 'knowledge', name: 'admin-knowledge', component: () => import('@/views/KnowledgeManageView.vue') },
-        { path: 'ai-monitor', name: 'admin-ai-monitor', component: () => import('@/views/AiMonitorView.vue') },
-        { path: 'authority', name: 'admin-authority', component: () => import('@/views/AuthorityManageView.vue') },
-        { path: 'audit', name: 'admin-audit', component: () => import('@/views/AuditLogView.vue') },
-      ],
-    },
-  ],
-})
+        { path: 'dashboard', component: () => import('@/views/dashboard/DashboardPage.vue') },
+        { path: 'product/category', component: () => import('@/views/product/CategoryManagePage.vue') },
+        { path: 'product/list', component: () => import('@/views/product/ProductManagePage.vue') },
+        { path: 'order/list', component: () => import('@/views/order/OrderManagePage.vue') },
+        { path: 'refund/list', component: () => import('@/views/order/RefundManagePage.vue') },
+        { path: 'review/list', component: () => import('@/views/order/ReviewManagePage.vue') },
+        { path: 'user/list', component: () => import('@/views/user/UserManagePage.vue') },
+        { path: 'notice/list', component: () => import('@/views/notice/NoticeManagePage.vue') },
+        { path: 'ai/config', component: () => import('@/views/ai/AiConfigPage.vue') },
+        { path: 'ai/knowledge', component: () => import('@/views/ai/KnowledgeManagePage.vue') },
+        { path: 'ai/monitor', component: () => import('@/views/ai/AiMonitorPage.vue') },
+        { path: 'authority/account', component: () => import('@/views/authority/AccountManagePage.vue') },
+        { path: 'authority/role', component: () => import('@/views/authority/RoleManagePage.vue') },
+        { path: 'audit/list', component: () => import('@/views/authority/AuditLogPage.vue') }
+      ]
+    }
+  ]
+});
 
-export default router
+router.beforeEach((to) => {
+  if (to.meta.auth && !window.localStorage.getItem(STORAGE_KEYS.adminToken)) {
+    return '/login';
+  }
+  return true;
+});
+
+export default router;

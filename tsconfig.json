@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "types": ["vite/client", "vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["packages/shared/src/*"],
+      "@mall-user/*": ["apps/mall-user/src/*"],
+      "@mall-admin/*": ["apps/mall-admin/src/*"]
+    }
+  },
+  "include": [
+    "packages/shared/src/**/*.ts",
+    "packages/shared/src/**/*.d.ts",
+    "apps/**/*.ts",
+    "apps/**/*.d.ts",
+    "apps/**/*.vue",
+    "tests/**/*.ts"
+  ]
+}

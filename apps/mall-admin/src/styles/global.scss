@@ -1,0 +1,57 @@
+:root {
+  --admin-bg: #f4efe8;
+  --admin-surface: #fffdf9;
+  --admin-card: #ffffff;
+  --admin-text: #291d18;
+  --admin-muted: #78655b;
+  --admin-primary: #d95d25;
+  --admin-secondary: #163a56;
+  --admin-border: rgba(95, 67, 52, 0.12);
+  --admin-shadow: 0 22px 54px rgba(75, 52, 37, 0.08);
+  font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 1366px;
+  color: var(--admin-text);
+  background:
+    radial-gradient(circle at top left, rgba(217, 93, 37, 0.18), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(22, 58, 86, 0.16), transparent 24%),
+    linear-gradient(180deg, #f7f1ea 0%, #f4efe8 100%);
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.admin-panel {
+  background: var(--admin-card);
+  border-radius: 24px;
+  border: 1px solid var(--admin-border);
+  box-shadow: var(--admin-shadow);
+}
+
+.admin-page {
+  display: grid;
+  gap: 20px;
+}
+
+.admin-page__header h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.admin-page__header p {
+  margin: 8px 0 0;
+  color: var(--admin-muted);
+}
+
+.el-button--primary {
+  --el-button-bg-color: var(--admin-primary);
+  --el-button-border-color: var(--admin-primary);
+}

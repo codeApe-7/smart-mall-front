@@ -24,7 +24,7 @@ function editAddress(item?: UserAddress) {
 async function submitAddress() {
   const token = String((sessionStore as any).userToken || '');
   if (!token) return;
-  await saveAddress(token, form);
+  await saveAddress(token, { ...form, province: form.province || '', city: form.city || '' });
   ElMessage.success('地址已保存');
   dialogVisible.value = false;
   await loadAddresses();
@@ -78,3 +78,4 @@ onMounted(loadAddresses);
 .address-page__card { padding: 22px; }
 .address-page__actions { display: flex; gap: 10px; }
 </style>
+

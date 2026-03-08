@@ -1,4 +1,4 @@
-﻿{
+{
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
@@ -12,18 +12,36 @@
     "src/main.ts",
     "src/App.vue",
     "src/env.d.ts",
-    "src/router/**/*.ts",
-    "src/layouts/UserLayout.vue",
-    "src/views/account/**/*.vue",
-    "src/views/product/**/*.vue",
-    "src/views/cart/**/*.vue",
-    "src/views/order/**/*.vue",
-    "src/views/message/**/*.vue",
-    "src/views/assistant/**/*.vue",
-    "src/views/profile/**/*.vue",
+    "src/router/index.ts",
+    "src/layouts/MarketplaceLayout.vue",
+    "src/layouts/AuthLayout.vue",
+    "src/views/HomeView.vue",
+    "src/views/ProductListView.vue",
+    "src/views/ProductDetailView.vue",
+    "src/views/ProductCompareView.vue",
+    "src/views/CartView.vue",
+    "src/views/CheckoutView.vue",
+    "src/views/OrderListView.vue",
+    "src/views/OrderDetailView.vue",
+    "src/views/MessageCenterView.vue",
+    "src/views/PreferenceView.vue",
+    "src/views/AssistantView.vue",
+    "src/views/ProfileView.vue",
+    "src/views/LoginView.vue",
+    "src/views/RegisterView.vue",
     "src/components/**/*.vue",
-    "src/stores/session.ts",
+    "src/stores/sessionStore.ts",
     "src/api/**/*.ts",
     "../../packages/shared/src/**/*.ts"
+  ],
+  "exclude": [
+    "src/views/account/**",
+    "src/views/assistant/**",
+    "src/views/cart/**",
+    "src/views/message/**",
+    "src/views/order/**",
+    "src/views/product/**",
+    "src/views/profile/**",
+    "src/stores/session.ts"
   ]
 }

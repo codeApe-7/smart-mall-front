@@ -16,11 +16,11 @@ const submit = async () => {
   try {
     const result = await loginUser(form)
     sessionStore.setSession(String(result.userToken || ''), {
-      userId: result.userId,
-      username: result.username,
-      nickname: result.nickname,
-      phone: result.phone,
-      avatar: result.avatar,
+      userId: result.profile?.userId,
+      username: result.profile?.username,
+      nickname: result.profile?.nickname,
+      phone: result.profile?.phone,
+      avatar: result.profile?.avatar,
     })
     ElMessage.success('登录成功')
     const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/'

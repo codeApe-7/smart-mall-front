@@ -31,7 +31,7 @@ const load = async () => {
   if (!userToken) return
   const userProfile = await fetchUserProfile(userToken)
   profile.value = (userProfile as unknown as Record<string, unknown>) || null
-  addresses.value = (await fetchAddressList(userToken)) as Array<Record<string, unknown>>
+  addresses.value = (await fetchAddressList(userToken)) as unknown as Array<Record<string, unknown>>
   profileForm.nickname = String(userProfile.nickname || '')
   profileForm.phone = String(userProfile.phone || '')
   profileForm.avatar = String(userProfile.avatar || '')

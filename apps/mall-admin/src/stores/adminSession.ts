@@ -2,12 +2,12 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { ElMessage } from 'element-plus'
 import { getStorage, removeStorage, setStorage } from '@shared/utils/storage'
-import { ADMIN_PROFILE_KEY, ADMIN_TOKEN_KEY } from '@shared/constants/storage'
+import { STORAGE_KEYS } from '@shared/constants/storage'
 import { accountApi } from '@/api/modules/admin'
 
 export const useAdminSessionStore = defineStore('admin-session', () => {
-  const token = ref<string>(getStorage(ADMIN_TOKEN_KEY, ''))
-  const profile = ref<Record<string, any> | null>(getStorage(ADMIN_PROFILE_KEY, null))
+  const token = ref<string>(getStorage(STORAGE_KEYS.adminToken, ''))
+  const profile = ref<Record<string, any> | null>(getStorage(STORAGE_KEYS.adminProfile, null))
   const loading = ref(false)
 
   const isAuthenticated = computed(() => Boolean(token.value))
@@ -16,16 +16,16 @@ export const useAdminSessionStore = defineStore('admin-session', () => {
 
   const setToken = (nextToken: string) => {
     token.value = nextToken
-    setStorage(ADMIN_TOKEN_KEY, nextToken)
+    setStorage(STORAGE_KEYS.adminToken, nextToken)
   }
 
   const setProfile = (nextProfile: Record<string, any> | null) => {
     profile.value = nextProfile
     if (nextProfile) {
-      setStorage(ADMIN_PROFILE_KEY, nextProfile)
+      setStorage(STORAGE_KEYS.adminProfile, nextProfile)
       return
     }
-    removeStorage(ADMIN_PROFILE_KEY)
+    removeStorage(STORAGE_KEYS.adminProfile)
   }
 
   const fetchProfile = async () => {
@@ -60,8 +60,8 @@ export const useAdminSessionStore = defineStore('admin-session', () => {
     } finally {
       token.value = ''
       setProfile(null)
-      removeStorage(ADMIN_TOKEN_KEY)
-      removeStorage(ADMIN_PROFILE_KEY)
+      removeStorage(STORAGE_KEYS.adminToken)
+      removeStorage(STORAGE_KEYS.adminProfile)
     }
   }
 

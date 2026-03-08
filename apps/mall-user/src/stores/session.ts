@@ -1,7 +1,12 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { clearUserSession, getUserId, getUserToken, saveUserSession } from '@shared/utils/session'
-import { fetchUserProfile, loginUser, logoutUser, registerUser } from '@/api/modules/account'
+import {
+  fetchUserProfile,
+  loginUser,
+  logoutUser,
+  registerUser,
+} from '@/api/modules/account'
 
 export const useSessionStore = defineStore('userSessionStore', () => {
   const userToken = ref(getUserToken())
@@ -17,8 +22,6 @@ export const useSessionStore = defineStore('userSessionStore', () => {
       userId.value = payload.profile.userId
     }
     saveUserSession({ token: payload.token, userId: userId.value, profile: profile.value })
-
-export const useMallUserSessionStore = useSessionStore
   }
 
   const login = async (payload: { account: string; password: string }) => {
@@ -65,3 +68,5 @@ export const useMallUserSessionStore = useSessionStore
     logout,
   }
 })
+
+export const useMallUserSessionStore = useSessionStore

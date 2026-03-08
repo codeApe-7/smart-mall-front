@@ -4,17 +4,17 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@shared/*": ["../../packages/shared/src/*"],
-      "@mall-user/*": ["src/*"]
+      "@mall-user/*": ["src/*"],
+      "@shared/*": ["../../packages/shared/src/*"]
     }
   },
   "include": [
     "src/main.ts",
     "src/App.vue",
     "src/env.d.ts",
-    "src/router/**/*.ts",
-    "src/layouts/*.vue",
-    "src/layouts/UserLayout.vue",
+    "src/router/index.ts",
+    "src/layouts/MarketplaceLayout.vue",
+    "src/layouts/AuthLayout.vue",
     "src/views/HomeView.vue",
     "src/views/ProductListView.vue",
     "src/views/ProductDetailView.vue",
@@ -29,21 +29,16 @@
     "src/views/ProfileView.vue",
     "src/views/LoginView.vue",
     "src/views/RegisterView.vue",
-    "src/components/*.vue",
+    "src/components/ProductCard.vue",
+    "src/components/SectionPanel.vue",
+    "src/components/JsonPanel.vue",
     "src/stores/sessionStore.ts",
-    "src/api/**/*.ts",
+    "src/api/client.ts",
+    "src/api/modules/account.ts",
+    "src/api/modules/product.ts",
+    "src/api/modules/message.ts",
+    "src/api/modules/preference.ts",
+    "src/api/modules/review.ts",
     "../../packages/shared/src/**/*.ts"
-  ],
-  "exclude": [
-    "src/views/account/**",
-    "src/views/product/**",
-    "src/views/assistant/**",
-    "src/views/cart/**",
-    "src/views/message/**",
-    "src/views/order/**",
-    "src/views/profile/**",
-    "src/stores/session.ts",
-    "src/stores/cart.ts",
-    "src/layouts/UserLayout.vue"
   ]
 }

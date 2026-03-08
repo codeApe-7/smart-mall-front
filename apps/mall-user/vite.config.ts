@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import { fileURLToPath, URL } from 'node:url'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
   root: fileURLToPath(new URL('.', import.meta.url)),
@@ -9,15 +9,14 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@mall-user': fileURLToPath(new URL('./src', import.meta.url)),
-      '@shared': fileURLToPath(new URL('../../packages/shared/src', import.meta.url)),
-      '@mall-user': fileURLToPath(new URL('./src', import.meta.url)),
-    },
+      '@shared': fileURLToPath(new URL('../../packages/shared/src', import.meta.url))
+    }
   },
   server: {
-    port: 5173,
+    port: 5173
   },
   build: {
     outDir: fileURLToPath(new URL('../../dist/mall-user', import.meta.url)),
-    emptyOutDir: true,
-  },
-})
+    emptyOutDir: true
+  }
+});

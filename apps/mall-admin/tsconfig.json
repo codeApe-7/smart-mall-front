@@ -5,7 +5,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@shared/*": ["../../packages/shared/src/*"]
+      "@shared/*": ["../../packages/shared/src/*"],
+      "@mall-admin/*": ["src/*"]
     }
   },
   "include": [
@@ -13,27 +14,23 @@
     "src/App.vue",
     "src/env.d.ts",
     "src/router/**/*.ts",
-    "src/layouts/*.vue",
-    "src/views/LoginView.vue",
-    "src/views/DashboardView.vue",
+    "src/layouts/AdminWorkbenchLayout.vue",
+    "src/views/AiConfigView.vue",
+    "src/views/AiMonitorView.vue",
+    "src/views/AuditLogView.vue",
+    "src/views/AuthorityManageView.vue",
     "src/views/CategoryManageView.vue",
-    "src/views/ProductManageView.vue",
+    "src/views/DashboardView.vue",
+    "src/views/KnowledgeManageView.vue",
+    "src/views/LoginView.vue",
+    "src/views/NoticeManageView.vue",
     "src/views/OrderManageView.vue",
+    "src/views/ProductManageView.vue",
     "src/views/RefundManageView.vue",
     "src/views/ReviewManageView.vue",
     "src/views/UserManageView.vue",
-    "src/views/NoticeManageView.vue",
-    "src/views/AiConfigView.vue",
-    "src/views/KnowledgeManageView.vue",
-    "src/views/AiMonitorView.vue",
-    "src/views/AuthorityManageView.vue",
-    "src/views/AuditLogView.vue",
-    "../../packages/shared/src/**/*.ts"
-  ],
-  "exclude": [
-    "src/views/auth/**",
-    "src/layouts/AdminLayout.vue",
-    "src/stores/**",
-    "src/api/**"
+    "src/components/**/*.vue",
+    "src/stores/**/*.ts",
+    "src/api/**/*.ts"
   ]
 }

@@ -1,11 +1,11 @@
 import type { AxiosRequestConfig } from 'axios'
 import type { PageResult } from '@shared/types/common'
 import { createHttpClient } from '@shared/http/createHttpClient'
-import { ADMIN_TOKEN_KEY } from '@shared/constants/storage'
+import { STORAGE_KEYS } from '@shared/constants/storage'
 
 const adminHttp = createHttpClient({
   baseURL: import.meta.env.VITE_ADMIN_API_BASE_URL || 'http://localhost:6061',
-  tokenKey: ADMIN_TOKEN_KEY,
+  tokenKey: STORAGE_KEYS.adminToken,
   tokenHeader: 'adminToken',
 })
 

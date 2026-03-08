@@ -1,5 +1,5 @@
-﻿import { createRouter, createWebHistory } from 'vue-router';
-import { STORAGE_KEYS } from '@shared/constants/storage';
+import { createRouter, createWebHistory } from 'vue-router'
+import { STORAGE_KEYS } from '@shared/constants/storage'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -22,25 +22,26 @@ const router = createRouter({
         { path: 'preference', name: 'user-preference', component: () => import('@/views/PreferenceView.vue'), meta: { auth: true } },
         { path: 'assistant', name: 'user-assistant', component: () => import('@/views/AssistantView.vue') },
         { path: 'profile', name: 'user-profile', component: () => import('@/views/ProfileView.vue'), meta: { auth: true } },
-        { path: 'address', redirect: '/profile' }
-      ]
+        { path: 'payment/callback', name: 'user-payment-callback', component: () => import('@/views/PaymentCallbackView.vue'), meta: { auth: true } },
+        { path: 'address', redirect: '/profile' },
+      ],
     },
     {
       path: '/auth',
       component: () => import('@/layouts/AuthLayout.vue'),
       children: [
         { path: 'login', name: 'user-login', component: () => import('@/views/LoginView.vue') },
-        { path: 'register', name: 'user-register', component: () => import('@/views/RegisterView.vue') }
-      ]
-    }
-  ]
-});
+        { path: 'register', name: 'user-register', component: () => import('@/views/RegisterView.vue') },
+      ],
+    },
+  ],
+})
 
 router.beforeEach((to) => {
   if (to.meta.auth && !window.localStorage.getItem(STORAGE_KEYS.userToken)) {
-    return '/auth/login';
+    return '/auth/login'
   }
-  return true;
-});
+  return true
+})
 
-export default router;
+export default router

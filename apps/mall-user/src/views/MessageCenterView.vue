@@ -1,4 +1,4 @@
-﻿<template><MessageCenterPage /></template>
+<template><MessagesView /></template>
 <script setup lang="ts">
-import MessageCenterPage from '@/views/message/MessageCenterPage.vue'
+import MessagesView from '@/views/MessagesView.vue'
 </script>

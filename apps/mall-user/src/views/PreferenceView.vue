@@ -1,4 +1,4 @@
-﻿<template><PreferencePage /></template>
+<template><PreferencesView /></template>
 <script setup lang="ts">
-import PreferencePage from '@/views/profile/PreferencePage.vue'
+import PreferencesView from '@/views/PreferencesView.vue'
 </script>

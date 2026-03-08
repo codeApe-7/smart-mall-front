@@ -1,9 +1,29 @@
-import { createHttpClient } from '@shared/http/createHttpClient'
+import { type AxiosRequestConfig } from 'axios'
+import { createHttpClient } from '@shared/http'
+import { clearUserSession } from '@shared/utils/session'
 
-export const mallClient = createHttpClient({
-  baseURL: import.meta.env.VITE_MALL_API_URL || 'http://localhost:6050/api',
+const mallClient = createHttpClient({
+  baseURL: import.meta.env.VITE_MALL_USER_API_BASE_URL || 'http://localhost:8080/api',
 })
 
-export const request = mallClient
+const unwrap = async <T>(requestPromise: Promise<{ data: T }>) => {
+  const response = await requestPromise
+  return response.data
+}
 
-export const mallWsUrl = import.meta.env.VITE_MALL_WS_URL || 'ws://localhost:6050/api/ws/assistant'
+export const request = {
+  get<T>(url: string, config?: AxiosRequestConfig) {
+    return unwrap(mallClient.get<T>(url, config))
+  },
+  post<T>(url: string, data?: unknown, config?: AxiosRequestConfig) {
+    return unwrap(mallClient.post<T>(url, data, config))
+  },
+}
+
+export const mallUserApiBaseUrl = import.meta.env.VITE_MALL_USER_API_BASE_URL || 'http://localhost:8080/api'
+export const mallWsUrl = import.meta.env.VITE_MALL_USER_WS_URL || ''
+
+export const handleUnauthorized = () => {
+  clearUserSession()
+  window.location.href = '/login'
+}

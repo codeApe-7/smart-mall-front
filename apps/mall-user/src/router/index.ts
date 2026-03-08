@@ -1,35 +1,38 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import { STORAGE_KEYS } from '@shared/constants/storage';
+import UserLayout from '@/layouts/UserLayout.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    { path: '/login', component: () => import('@/views/account/LoginPage.vue') },
+    { path: '/register', component: () => import('@/views/account/RegisterPage.vue') },
     {
       path: '/',
-      component: () => import('@/layouts/MarketplaceLayout.vue'),
+      component: UserLayout,
       children: [
-        { path: '', name: 'user-home', component: () => import('@/views/HomeView.vue') },
-        { path: 'products', name: 'user-products', component: () => import('@/views/ProductListView.vue') },
-        { path: 'products/:productId', name: 'user-product-detail', component: () => import('@/views/ProductDetailView.vue') },
-        { path: 'compare', name: 'user-product-compare', component: () => import('@/views/ProductCompareView.vue') },
-        { path: 'cart', name: 'user-cart', component: () => import('@/views/CartView.vue') },
-        { path: 'checkout', name: 'user-checkout', component: () => import('@/views/CheckoutView.vue') },
-        { path: 'orders', name: 'user-orders', component: () => import('@/views/OrderListView.vue') },
-        { path: 'orders/:orderId', name: 'user-order-detail', component: () => import('@/views/OrderDetailView.vue') },
-        { path: 'messages', name: 'user-messages', component: () => import('@/views/MessageCenterView.vue') },
-        { path: 'preference', name: 'user-preference', component: () => import('@/views/PreferenceView.vue') },
-        { path: 'assistant', name: 'user-assistant', component: () => import('@/views/AssistantView.vue') },
-        { path: 'profile', name: 'user-profile', component: () => import('@/views/ProfileView.vue') },
-      ],
-    },
-    {
-      path: '/auth',
-      component: () => import('@/layouts/AuthLayout.vue'),
-      children: [
-        { path: 'login', name: 'user-login', component: () => import('@/views/LoginView.vue') },
-        { path: 'register', name: 'user-register', component: () => import('@/views/RegisterView.vue') },
-      ],
-    },
-  ],
-})
+        { path: '', component: () => import('@/views/product/HomePage.vue') },
+        { path: 'products', component: () => import('@/views/product/ProductListPage.vue') },
+        { path: 'products/:productId', component: () => import('@/views/product/ProductDetailPage.vue') },
+        { path: 'cart', component: () => import('@/views/cart/CartPage.vue'), meta: { auth: true } },
+        { path: 'checkout', component: () => import('@/views/order/CheckoutPage.vue'), meta: { auth: true } },
+        { path: 'orders', component: () => import('@/views/order/OrderListPage.vue'), meta: { auth: true } },
+        { path: 'orders/:orderId', component: () => import('@/views/order/OrderDetailPage.vue'), meta: { auth: true } },
+        { path: 'messages', component: () => import('@/views/message/MessageCenterPage.vue'), meta: { auth: true } },
+        { path: 'assistant', component: () => import('@/views/assistant/AssistantPage.vue') },
+        { path: 'profile', component: () => import('@/views/profile/ProfilePage.vue'), meta: { auth: true } },
+        { path: 'address', component: () => import('@/views/profile/AddressPage.vue'), meta: { auth: true } },
+        { path: 'preference', component: () => import('@/views/profile/PreferencePage.vue'), meta: { auth: true } }
+      ]
+    }
+  ]
+});
 
-export default router
+router.beforeEach((to) => {
+  if (to.meta.auth && !window.localStorage.getItem(STORAGE_KEYS.userToken)) {
+    return '/login';
+  }
+  return true;
+});
+
+export default router;

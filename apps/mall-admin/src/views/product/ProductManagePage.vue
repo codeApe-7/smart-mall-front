@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import { deleteProduct, listProducts, saveProduct } from '@mall-admin/api/modules/product';
@@ -56,7 +56,7 @@ onMounted(loadData);
           <template #default="scope"><el-button link @click="Object.assign(form, scope.row); dialogVisible = true">编辑</el-button><el-button link type="danger" @click="removeProduct(scope.row.productId)">删除</el-button></template>
         </el-table-column>
       </el-table>
-      <el-pagination layout="prev, pager, next, total" :total="totalCount" :page-size="query.pageSize" :current-page="query.pageNo" @current-change="(page) => { query.pageNo = page; loadData(); }" />
+      <el-pagination layout="prev, pager, next, total" :total="totalCount" :page-size="query.pageSize" :current-page="query.pageNo" @current-change="(page: number) => { query.pageNo = page; loadData(); }" />
     </section>
     <el-dialog v-model="dialogVisible" title="商品编辑" width="720px">
       <el-form label-position="top">
@@ -76,3 +76,4 @@ onMounted(loadData);
   padding: 20px;
 }
 </style>
+

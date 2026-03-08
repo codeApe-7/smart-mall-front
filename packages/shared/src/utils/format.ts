@@ -24,3 +24,5 @@ export const joinAddress = (...parts: Array<string | null | undefined>) =>
   parts.filter(Boolean).join(' ')
 
 export const formatCurrency = currency
+
+export const ensureArray = <T>(value: T[] | null | undefined) => value ?? []

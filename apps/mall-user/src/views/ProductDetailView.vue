@@ -34,16 +34,16 @@ import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import JsonPanel from '@/components/JsonPanel.vue'
 import SectionPanel from '@/components/SectionPanel.vue'
-import { fetchKnowledgeDetail, fetchProductDetail } from '@/api/modules/product'
+import { type ProductDetailResponse, fetchKnowledgeDetail, fetchProductDetail } from '@/api/modules/product'
 import { fetchProductReviews } from '@/api/modules/review'
 import type { ProductReview } from '@shared/types/mall'
 
 const route = useRoute()
-const detail = ref<Record<string, unknown>>({})
+const detail = ref<ProductDetailResponse>({})
 const knowledgeDetail = ref<Record<string, unknown>>({})
 const reviews = ref<ProductReview[]>([])
 
-const productInfo = computed(() => (detail.value.productInfo as Record<string, unknown>) || {})
+const productInfo = computed(() => detail.value.productInfo || {})
 const productName = computed(() => String(productInfo.value.productName || '未命名商品'))
 const productDesc = computed(() => String(productInfo.value.productDesc || '暂无商品描述'))
 

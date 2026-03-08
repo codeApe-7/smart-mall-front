@@ -1,44 +1,29 @@
-{
+﻿{
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@mall-user/*": ["src/*"],
-      "@shared/*": ["../../packages/shared/src/*"]
+      "@shared/*": ["../../packages/shared/src/*"],
+      "@mall-user/*": ["src/*"]
     }
   },
   "include": [
     "src/main.ts",
     "src/App.vue",
     "src/env.d.ts",
-    "src/router/index.ts",
-    "src/layouts/MarketplaceLayout.vue",
-    "src/layouts/AuthLayout.vue",
-    "src/views/HomeView.vue",
-    "src/views/ProductListView.vue",
-    "src/views/ProductDetailView.vue",
-    "src/views/ProductCompareView.vue",
-    "src/views/CartView.vue",
-    "src/views/CheckoutView.vue",
-    "src/views/OrderListView.vue",
-    "src/views/OrderDetailView.vue",
-    "src/views/MessageCenterView.vue",
-    "src/views/PreferenceView.vue",
-    "src/views/AssistantView.vue",
-    "src/views/ProfileView.vue",
-    "src/views/LoginView.vue",
-    "src/views/RegisterView.vue",
-    "src/components/ProductCard.vue",
-    "src/components/SectionPanel.vue",
-    "src/components/JsonPanel.vue",
-    "src/stores/sessionStore.ts",
-    "src/api/client.ts",
-    "src/api/modules/account.ts",
-    "src/api/modules/product.ts",
-    "src/api/modules/message.ts",
-    "src/api/modules/preference.ts",
-    "src/api/modules/review.ts",
+    "src/router/**/*.ts",
+    "src/layouts/UserLayout.vue",
+    "src/views/account/**/*.vue",
+    "src/views/product/**/*.vue",
+    "src/views/cart/**/*.vue",
+    "src/views/order/**/*.vue",
+    "src/views/message/**/*.vue",
+    "src/views/assistant/**/*.vue",
+    "src/views/profile/**/*.vue",
+    "src/components/**/*.vue",
+    "src/stores/session.ts",
+    "src/api/**/*.ts",
     "../../packages/shared/src/**/*.ts"
   ]
 }

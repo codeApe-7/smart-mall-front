@@ -5,7 +5,7 @@ import SectionPanel from '@/components/SectionPanel.vue'
 import JsonPanel from '@/components/JsonPanel.vue'
 import { fetchPreferenceProfile, refreshPreferenceProfile } from '@/api/modules/preference'
 
-const profile = ref<Record<string, unknown> | null>(null)
+const profile = ref<unknown>(null)
 
 const load = async () => {
   profile.value = await fetchPreferenceProfile(getUserId())

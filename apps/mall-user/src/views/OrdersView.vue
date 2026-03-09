@@ -42,6 +42,7 @@ onMounted(loadOrders)
           <template #default="scope">
             <div class="toolbar">
               <el-button text type="primary" @click="router.push(`/orders/${scope.row.orderId}`)">详情</el-button>
+              <el-button text @click="router.push(`/refund/${scope.row.orderId}`)">退款详情</el-button>
               <el-button text @click="activeDetail = scope.row">预览</el-button>
               <el-button text type="danger" @click="cancelOrder({ userId: getUserId(), orderId: String(scope.row.orderId) }).then(loadOrders)">取消</el-button>
               <el-button text type="success" @click="confirmReceive({ userId: getUserId(), orderId: String(scope.row.orderId) }).then(loadOrders)">确认收货</el-button>

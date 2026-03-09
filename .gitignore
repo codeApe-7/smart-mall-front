@@ -10,3 +10,4 @@ apps/*/dist/
 apps/*/.vite/
 progress/
 logs/
+frontend-progress.local.md

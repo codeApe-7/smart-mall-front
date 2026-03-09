@@ -1,9 +1,28 @@
 ﻿import { createRouter, createWebHistory } from 'vue-router';
 import { STORAGE_KEYS } from '@shared/constants/storage';
 
+const adminLegacyRedirects = [
+  { path: '/admin/login', redirect: '/login' },
+  { path: '/admin/dashboard', redirect: '/dashboard' },
+  { path: '/admin/product/category', redirect: '/product/category' },
+  { path: '/admin/product/list', redirect: '/product/list' },
+  { path: '/admin/order/list', redirect: '/order/list' },
+  { path: '/admin/refund/list', redirect: '/refund/list' },
+  { path: '/admin/review/list', redirect: '/review/list' },
+  { path: '/admin/user/list', redirect: '/user/list' },
+  { path: '/admin/notice/list', redirect: '/notice/list' },
+  { path: '/admin/ai/config', redirect: '/ai/config' },
+  { path: '/admin/ai/knowledge', redirect: '/ai/knowledge' },
+  { path: '/admin/ai/monitor', redirect: '/ai/monitor' },
+  { path: '/admin/authority/account', redirect: '/authority/account' },
+  { path: '/admin/authority/role', redirect: '/authority/role' },
+  { path: '/admin/audit/list', redirect: '/audit/list' },
+]
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    ...adminLegacyRedirects,
     { path: '/product/category', redirect: '/category' },
     { path: '/product/list', redirect: '/products' },
     { path: '/order/list', redirect: '/orders' },
@@ -14,8 +33,7 @@ const router = createRouter({
     { path: '/ai/config', redirect: '/ai-config' },
     { path: '/ai/knowledge', redirect: '/knowledge' },
     { path: '/ai/monitor', redirect: '/ai-monitor' },
-    { path: '/authority/account', redirect: '/authority' },
-    { path: '/authority/role', redirect: '/authority' },
+    { path: '/authority', redirect: '/authority/account' },
     { path: '/audit/list', redirect: '/audit' },
     {
       path: '/login',
@@ -38,7 +56,8 @@ const router = createRouter({
         { path: 'ai-config', name: 'admin-ai-config', component: () => import('@/views/AiConfigView.vue') },
         { path: 'knowledge', name: 'admin-knowledge', component: () => import('@/views/KnowledgeManageView.vue') },
         { path: 'ai-monitor', name: 'admin-ai-monitor', component: () => import('@/views/AiMonitorView.vue') },
-        { path: 'authority', name: 'admin-authority', component: () => import('@/views/AuthorityManageView.vue') },
+        { path: 'authority/account', name: 'admin-account', component: () => import('@/views/AccountManageView.vue') },
+        { path: 'authority/role', name: 'admin-role', component: () => import('@/views/RoleManageView.vue') },
         { path: 'audit', name: 'admin-audit', component: () => import('@/views/AuditLogView.vue') }
       ]
     }

@@ -55,6 +55,7 @@ onMounted(loadData)
       <div class="toolbar" style="margin-bottom: 16px">
         <el-button type="primary" @click="handleConfirm">确认收货</el-button>
         <el-button plain @click="handleRefund">申请退款</el-button>
+        <el-button plain @click="$router.push(`/refund/${route.params.orderId}`)">退款详情</el-button>
         <el-button plain @click="loadData">刷新</el-button>
       </div>
       <JsonPanel v-if="detail" :data="detail" title="订单详情" />
